@@ -20,7 +20,9 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     id: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+
     },
     
     email: {
@@ -30,10 +32,12 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    sequelize,
-    modelName: 'User',
-  });
+    }
+  },
+    {
+      sequelize,
+      modelName: 'Users',
+    });
   
   return User;
 };

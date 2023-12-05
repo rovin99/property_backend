@@ -1,9 +1,11 @@
 const express=require('express');
+const {InfoController}=require('../controllers');
+const {PropertyController} = require('../controllers');
+const propertyRoutes=require('./property-routes');
+const router= express.Router();
 
-const v1Routes=require('./v1');
-//const v2Routes=require('./v2');
-const router = express.Router();
+router.get('/info', InfoController.info);
+router.use('/property', propertyRoutes);
+router.get('/list-properties', PropertyController.getProperties);
 
-router.use('/v1',v1Routes); //if url contains /v1- then use this apis
-//router.use('/v2',v2Routes);
 module.exports =router;

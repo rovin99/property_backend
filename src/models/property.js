@@ -11,18 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Property.belongsTo(models.User, { foreignKey: 'ownerId' ,
-      onDelete: 'CASCADE',
-    });
+      this.belongsTo(models.Users, {
+        foreignKey: 'ownerId', // Change this to the correct foreign key in the User model
+        onDelete: 'CASCADE',
+      });
+    
     }
   }
   Property.init({
     
-  id: {
-    allowNull: false,
-    
-    type: DataTypes.INTEGER
-  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,

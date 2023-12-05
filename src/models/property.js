@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Property.belongsTo(models.User, { foreignKey: 'ownerId' ,
+      onDelete: 'CASCADE',
+    });
     }
   }
   Property.init({
@@ -52,5 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Property',
   });
+  
+
   return Property;
 };

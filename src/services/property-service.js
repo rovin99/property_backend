@@ -27,6 +27,7 @@ async function createProperty(data) {
 async function getProperties(){
     try{
         const properties= await propertyRepository.getAll();
+        
         return properties;
     }
     catch(error){
@@ -60,11 +61,22 @@ async function updateProperty(id, data){
     }
 }
 
+async function getPropertyByOwnerId(ownerId) {
+    try {
+        const properties = await propertyRepository.getPropertyByOwnerId(ownerId);
+        console.log(JSON.stringify(properties));
+        return properties;
+    } catch (error) {
+        throw new AppError('Cannot get properties by owner ID', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createProperty,
     getProperties,
     destroyProperty,
-    updateProperty
+    updateProperty,
+    getPropertyByOwnerId
 }
 
 

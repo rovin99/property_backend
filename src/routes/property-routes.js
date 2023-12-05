@@ -2,16 +2,16 @@ const express = require('express');
 
 const {PropertyController} = require('../controllers');
 
-const {PropertyMiddleware} = require('../middleware');
+const {PropertyMiddleware,AuthMiddleware} = require('../middleware');
 
 const router = express.Router();
 
-router.post('/', PropertyMiddleware.isAuthenticated,PropertyMiddleware.validateCreateProperty, PropertyController.createProperty);
+router.post('/', PropertyMiddleware.validateCreateProperty, PropertyController.createProperty);
 
-router.get('/', PropertyMiddleware.isAuthenticated,PropertyController.getProperties);
+router.get('/', PropertyController.getOwnerProperties);
 
-router.patch('/:id/',PropertyMiddleware.isAuthenticated,PropertyController.updateProperty);
+router.patch('/:id/',PropertyController.updateProperty);
 
-router.delete('/:id/',PropertyMiddleware.isAuthenticated,PropertyController.destroyProperty);
+router.delete('/:id/',PropertyController.destroyProperty);
 
 module.exports = router;

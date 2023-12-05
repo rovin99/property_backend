@@ -28,10 +28,6 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.changeColumn('Properties', 'Users', {
-      type: Sequelize.INTEGER, // remove foreign key constraint
-      onDelete: null,
-      references: null
-    });
+    await queryInterface.removeConstraint('Properties', 'owner_property_association');
   }
 };

@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  availablefrom: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
   price: {
     type: DataTypes.INTEGER,
     allowNull: false,

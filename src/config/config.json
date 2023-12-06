@@ -8,7 +8,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
-    "dialect": "mysql"
+    "username": "avnadmin",
+    "password": "AVNS_X5JdDDmw6lmRvNxC17H",
+    "database": "defaultdb",
+    "host": "mysql-3b56647-rovin9325-6219.a.aivencloud.com",
+    "port": 22850,
+    "dialect": "mysql",
+    "ssl": true
   }
 }

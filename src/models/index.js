@@ -6,14 +6,16 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('/etc/secrets/config.js')[env];
+//const config = require('/etc/secrets/config.js')[env];
 const db = {};
-let sequelize;
-
-sequelize = new Sequelize(process.env[config.use_env_variable], config);
-console.log(process.env[config.use_env_variable])
-
-
+const sequelize = new Sequelize({
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database:process.env.DATABASE,
+  dialect: "mysql",
+  port: process.env.DB_PORT,
+  host: process.env.DB_HOST,
+});
 fs
   .readdirSync(__dirname)
   .filter(file => {

@@ -12,11 +12,11 @@ async function create(data) {
     } catch(error) {
         console.log(error.name);
         if(error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
-            let explanation = [];
+            let explaination = [];
             error.errors.forEach((err) => {
-                explanation.push(err.message);
+                explaination.push(err.message);
             });
-            throw new AppError(explanation, StatusCodes.BAD_REQUEST);
+            throw new AppError(explaination, StatusCodes.BAD_REQUEST);
         }
         throw new AppError('Cannot create a new user object', StatusCodes.INTERNAL_SERVER_ERROR);
     }

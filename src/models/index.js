@@ -9,12 +9,8 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 let sequelize;
+sequelize = new Sequelize(process.env.DATABASE_URL, config);
 
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env.DATABASE_URL, config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
 
 fs
   .readdirSync(__dirname)

@@ -9,6 +9,7 @@ const corsOrigin = "*";
 
 app.use(cors({
     origin: corsOrigin,
+    allowedHeaders: '*',
   }));
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));

@@ -71,12 +71,23 @@ async function getPropertyByOwnerId(ownerId) {
     }
 }
 
+ async function getOwnnerId(id){
+    try{
+        const ownerId=  propertyRepository.getOwnnerId(id);
+        return ownerId;
+    }
+    catch(error){
+        throw new AppError('Cannot get owner ID', StatusCodes.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports = {
     createProperty,
     getProperties,
     destroyProperty,
     updateProperty,
-    getPropertyByOwnerId
+    getPropertyByOwnerId,
+    getOwnnerId,
 }
 
 

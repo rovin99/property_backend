@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 //const { validationResult } = require('express-validator');
 const { errorResponse } = require('../utils/common');
-
+const { PropertyService } = require('../services');
 function validateCreateProperty(req, res, next) {
   console.log('Request Body:', req.body);
   if(!req.body.name){
@@ -64,28 +64,32 @@ function validateCreateProperty(req, res, next) {
             .json(errorResponse);
   }
 
-  // if(!req.body.ownerId){
-  //   errorResponse.message='Something went wrong while creating a new Property'
-  //   errorResponse.error={
-  //       explanation: 'OwnerId not found in the request in correct format'
-  //   };
-  //   return res
-  //           .status(StatusCodes.BAD_REQUEST)
-  //           .json(errorResponse);
-  // }
+  if(!req.body.ownerId){
+    errorResponse.message='Something went wrong while creating a new Property'
+    errorResponse.error={
+        explanation: 'OwnerId not found in the request in correct format'
+    };
+    return res
+            .status(StatusCodes.BAD_REQUEST)
+            .json(errorResponse);
+  }
 
 
  
   next();
 }
-const isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        return next();
+
+
+const authenticateOwner= async (req, res, next) => {
+    const ownerId = await PropertyService.getOwnnerId(req.params.id);
+    if (req.user == ownerId) {
+        next();
     } else {
         res.status(401).json({ message: 'Unauthorized' });
     }
-};
+}
 module.exports = {
     validateCreateProperty, 
-    isAuthenticated
+   
+    authenticateOwner
 }

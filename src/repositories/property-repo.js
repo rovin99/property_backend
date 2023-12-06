@@ -12,6 +12,11 @@ class PropertyRepository extends CrudRepository{
         return ownerproperty;
     }
 
+    async getOwnnerId(id){
+        const property = await Property.findByPk(id);
+        return property.ownerId;
+    }
+     
 }
 
 module.exports = PropertyRepository;

@@ -2,7 +2,7 @@ const express = require('express');
 
 const {PropertyController} = require('../controllers');
 
-const {PropertyMiddleware,AuthMiddleware} = require('../middleware');
+const {PropertyMiddleware} = require('../middleware');
 
 const router = express.Router();
 
@@ -10,8 +10,8 @@ router.post('/', PropertyMiddleware.validateCreateProperty, PropertyController.c
 
 router.get('/', PropertyController.getOwnerProperties);
 
-router.patch('/:id/',PropertyController.updateProperty);
+router.patch('/:id/',PropertyMiddleware.authenticateOwner,PropertyController.updateProperty);
 
-router.delete('/:id/',PropertyController.destroyProperty);
+router.delete('/:id/',PropertyMiddleware.authenticateOwner,PropertyController.destroyProperty);
 
 module.exports = router;

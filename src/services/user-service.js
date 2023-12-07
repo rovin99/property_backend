@@ -11,6 +11,7 @@ async function create(data) {
         
         return user;
     } catch(error) {
+        console.error('Error creating user:', error);
         console.log(error.name);
         if(error.name == 'SequelizeValidationError' || error.name == 'SequelizeUniqueConstraintError') {
             let explaination = [];

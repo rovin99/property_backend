@@ -5,6 +5,7 @@ const { Auth} = require('../utils/common');
 const userRepo = new UserRepository();
 
 async function create(data) {
+    console.log("data", data);
     try {
         const user = await userRepo.create(data);
         

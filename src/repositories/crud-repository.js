@@ -13,7 +13,7 @@ class CrudRepository {
             const response = await this.model.create(data);
             return response;
         } catch (error) {
-            // Log the error or handle it as appropriate for your application
+            
             Logger.error('Error in create method:', error);
             throw new AppError('Failed to create resource', StatusCodes.INTERNAL_SERVER_ERROR);
         }
